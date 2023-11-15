@@ -9,7 +9,7 @@ class JSONDriver(FileDriver):
         return super().create(path, name)
     
     @staticmethod
-    def write(path: list | dict, data: str) -> bool:
+    def write(path: str, data: list | dict) -> bool:
         try:
             with open(path, 'w') as f:
                 json.dump(data, f)

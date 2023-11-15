@@ -2,22 +2,22 @@ from abc import ABC, abstractmethod
 
 
 class Driver(ABC):
-    @abstractmethod
     @staticmethod
+    @abstractmethod
     def create(path: str, name: str) -> None:
         ...
      
-    @abstractmethod
     @staticmethod
+    @abstractmethod
     def write(path: str, data: str) -> bool:
         ...
     
-    @abstractmethod
     @staticmethod
+    @abstractmethod
     def read(path: str) -> str:
         ...
 
-    @abstractmethod
     @staticmethod
+    @abstractmethod
     def delete(path: str, name: str) -> bool:
         ...
