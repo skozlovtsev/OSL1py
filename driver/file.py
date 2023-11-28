@@ -6,12 +6,10 @@ from .driver import Driver
 class FileDriver(Driver):
     @staticmethod
     def create(path: str, name: str, i:int = 0) -> None:
-        if not exists(path + name):
-            with open(path + name, 'a'):
-                return
-        i += 1
-        FileDriver.create(path, name + f"({i})")
-        return
+        if exists(path + name):
+            return False
+        with open(path + name, 'a'):
+            return True
      
     @staticmethod
     def write(path: str, data: str) -> bool:

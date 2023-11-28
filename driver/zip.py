@@ -17,11 +17,10 @@ class ZipDriver(FileDriver):
             return False
         
     @staticmethod
-    def write(path: str, data: list) -> bool:
+    def write(path: str, data: str) -> bool:
         try:
             with zip.ZipFile(path, 'a') as zf:
-                for i in data:
-                    zf.write(i)
+                zf.write(data)
                 return True
         except FileExistsError:
             return False
