@@ -15,15 +15,7 @@ class ZipDriver(FileDriver):
                 return True
         except FileExistsError:
             return False
-        
-    @staticmethod
-    def write(path: str, data: str) -> bool:
-        try:
-            with zip.ZipFile(path, 'a') as zf:
-                zf.write(data)
-                return True
-        except FileExistsError:
-            return False
+
         
     @staticmethod
     def read(path: str) -> str:
