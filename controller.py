@@ -71,10 +71,12 @@ class JsonController(FileController):
         return super().create()
     
     def write(self) -> None:
+        path = input("Enter path: ")
         ...
     
     def read(self) -> None:
-        ...
+        path = input("Enter path: ")
+        
     
     def delete(self) -> None:
         return super().delete()
