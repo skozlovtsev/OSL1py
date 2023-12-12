@@ -1,14 +1,18 @@
 from driver.file import FileDriver
-from controller import FileController, JsonController, FSController
+from controller import FileController, JsonController, FSController, Struct
 from driver.json import JSONDriver
 from driver.xml import XMLDriver
 from driver.zip import ZipDriver
 from menu import Menu
 import sys, os
 
+class Person(Struct):
+    name: str
+    age: int
+
 file = FileController(FileDriver)
-json = JsonController(JSONDriver)
-xml = JsonController(XMLDriver)
+json = JsonController(JSONDriver, Person)
+xml = JsonController(XMLDriver, Person)
 zip = FileController(ZipDriver)
 
 main_menu = Menu([])

@@ -3,6 +3,12 @@ import os
 from psutil._common import bytes2human
 from driver.driver import Driver
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
+
+
+@dataclass
+class Struct(ABC):
+    ...
 
 
 class Controller(ABC):
@@ -63,21 +69,36 @@ class FileController(Controller):
 
 
 class JsonController(FileController):
-    def __init__(self, driver: Driver, postfix: str = ".json"):
+    def __init__(self, driver: Driver, struct: Struct, postfix: str = ".json"):
         self.driver = driver
         self.postfix = postfix
+        self.struct = struct
     
     def create(self) -> None:
         return super().create()
     
     def write(self) -> None:
         path = input("Enter path: ")
-        ...
+        serialisable = {}
+        for k, v in self.struct.__dataclass_fields__():
+            print(k)
+            serialisable[k] = input()
+        if not self.driver.write(path, serialisable):
+            print("Couldn't write")
     
     def read(self) -> None:
         path = input("Enter path: ")
-        
-    
+        data = self.driver.read(path)
+
+        if type(data) is list:
+            for i in data:
+                if type(i) is dict:
+                    printDict
+                else:
+                    print(i)
+        elif type(data) is dict:
+            printDict(data)
+
     def delete(self) -> None:
         return super().delete()
 
@@ -101,3 +122,8 @@ class FSController:
                 int(usage.percent),
                 part.fstype,
                 part.mountpoint))
+
+
+def printDict(d: dict):
+    for k, v in d.items():
+        print(k, ": ", v)
