@@ -6,7 +6,7 @@ import json
 class JSONDriver(FileDriver):
     @staticmethod
     def create(path: str, name: str) -> None:
-        return super().create(path, name)
+        return FileDriver.create(path, name)
     
     @staticmethod
     def write(path: str, data: list | dict) -> bool:
@@ -27,4 +27,4 @@ class JSONDriver(FileDriver):
     
     @staticmethod
     def delete(path: str, name: str) -> bool:
-        return super().delete(path, name)
+        return FileDriver.delete(path, name)

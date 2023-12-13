@@ -5,14 +5,16 @@ from driver.xml import XMLDriver
 from driver.zip import ZipDriver
 from menu import Menu
 import sys, os
+from dataclasses import dataclass
 
+@dataclass
 class Person(Struct):
     name: str
-    age: int
+    age: str
 
 file = FileController(FileDriver)
 json = JsonController(JSONDriver, Person)
-xml = JsonController(XMLDriver, Person)
+xml = JsonController(XMLDriver, Person, postfix=".xml")
 zip = FileController(ZipDriver)
 
 main_menu = Menu([])

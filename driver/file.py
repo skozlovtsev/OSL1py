@@ -5,7 +5,7 @@ from .driver import Driver
 
 class FileDriver(Driver):
     @staticmethod
-    def create(path: str, name: str, i:int = 0) -> bool:
+    def create(path: str, name: str) -> bool:
         if exists(path + name):
             return False
         with open(path + name, 'a'):

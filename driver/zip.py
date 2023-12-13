@@ -5,7 +5,7 @@ from .file import FileDriver
 class ZipDriver(FileDriver):
     @staticmethod
     def create(path: str, name: str) -> bool:
-        return super().create(path, name)
+        return FileDriver.create(path, name)
     
     @staticmethod
     def write(path: str, data: str) -> bool:
@@ -18,15 +18,16 @@ class ZipDriver(FileDriver):
 
         
     @staticmethod
-    def read(path: str) -> str:
+    def read(path: str) -> list:
+        result = []
         try:
-            with zip.ZipFile(path, 'w') as zf:
+            with zip.ZipFile(path, 'r') as zf:
                 for i in zf.namelist():
-                    with zf.open(i) as f:
-                        yield f.read()
+                    result.append(i)
+            return result
         except FileExistsError:
             return None
         
     @staticmethod
     def delete(path: str, name: str) -> bool:
-        return super().delete(path, name)
+        return FileDriver.delete(path, name)

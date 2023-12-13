@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Struct(ABC):
+class Struct():
     ...
 
 
@@ -80,9 +80,8 @@ class JsonController(FileController):
     def write(self) -> None:
         path = input("Enter path: ")
         serialisable = {}
-        for k, v in self.struct.__dataclass_fields__():
-            print(k)
-            serialisable[k] = input()
+        for k in self.struct.__dataclass_fields__.keys():
+            serialisable[k] = input(k + ": ")
         if not self.driver.write(path, serialisable):
             print("Couldn't write")
     
